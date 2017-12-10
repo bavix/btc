@@ -44,9 +44,9 @@
 <body>
     <div id="counter" v-html="value"></div>
 
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script defer async>
-        new Vue({
+        const vm = new Vue({
             el: '#counter',
             data: {
                 value: null
@@ -57,16 +57,13 @@
                 },
                 loadData: function () {
                     this.spinner();
-                    fetch('/api.php').then(function (res) {
-                        return res.json();
-                    }).then(function (response) {
-                        var row = response.data.query.results[0].row;
+                    fetch('/api.php').then(res => res.json()).then((json) => {
+                        const row = json.data.query.results[0].row;
                         this.value = parseInt(row.col1) + '$';
-                    }.bind(this))
+                    })
                 }
             },
-            created: function () {
-                // this.spinner();
+            mounted: function () {
                 this.loadData();
                 setInterval(this.loadData, 5000);
             }
