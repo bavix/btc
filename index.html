@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How many USD in one BTC?</title>
+
+    <link href="loader.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #6fa067;
+            /*background-color: #F46A6A;*/
+            color:#fff;
+            max-width:800px;
+            margin: 100px auto 0;
+            text-align: center;
+            display: table;
+        }
+
+        #counter {
+            display: table-cell;
+            margin:1.5%;
+            font-size:50px;
+            background-color: #80b977;
+            /*background-color: #FF6F6F;*/
+            width:450px;
+            border-radius: 50%;
+            height:450px;
+            vertical-align: middle;
+        }
+
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 10px auto;
+            border: 4px solid;
+            border-color: white transparent transparent transparent;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="counter" v-html="value"></div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script defer async>
+        new Vue({
+            el: '#counter',
+            data: {
+                value: null
+            },
+            methods: {
+                spinner: function () {
+                    this.value = '<div class="ld ld-spin-fast spinner"></div>';
+                },
+                loadData: function () {
+                    this.spinner();
+                    fetch('/api.php?' + Math.random()).then(function (res) {
+                        return res.json();
+                    }).then(function (response) {
+                        var row = response.data.query.results[0].row;
+                        this.value = parseInt(row.col1) + '$';
+                    }.bind(this))
+                }
+            },
+            created: function () {
+                // this.spinner();
+                this.loadData();
+                setInterval(this.loadData, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
