@@ -57,7 +57,7 @@
                 },
                 loadData: function () {
                     this.spinner();
-                    fetch('/api.php?' + Math.random()).then(function (res) {
+                    fetch('/api.php').then(function (res) {
                         return res.json();
                     }).then(function (response) {
                         var row = response.data.query.results[0].row;
