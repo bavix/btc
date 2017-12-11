@@ -1,22 +1,28 @@
+const baseURL = 'https://hm.babichev.net/api/v1.1';
+const apiPath = '/currencies?q=USDT_BTC';
+
 const vm = new Vue({
-    el: '#counter',
+    el: '#square',
     data: {
-        value: null
+        currency: 'Bitcoin',
+        value: null,
+        time: null,
+        spinner: true,
     },
     methods: {
-        spinner: function () {
-            this.value = '<div class="ld ld-spin-fast spinner"></div>';
-        },
         loadData: function () {
-            this.spinner();
-            fetch('https://hm.babichev.net/api/v1.1/currencies?q=USDT_BTC', {
+            this.spinner = true;
+            fetch(baseURL + apiPath, {
                 method: 'GET',
                 credentials: 'include',
                 cache: 'no-cache',
                 mode: 'cors'
             }).then(res => res.json()).then((json) => {
                 const row = json.data.query.results[0].row;
+                this.currency = row.col0;
+                this.time = row.col3;
                 this.value = parseInt(row.col1) + '$';
+                this.spinner = false;
             })
         }
     },

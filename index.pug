@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title How many USD in one BTC?
+    link(href="/css/app.css" rel="stylesheet")
+    link(href="/css/loader.css" rel="stylesheet")
+    include pug/favicons
+  body
+    .wrapper.d-flex
+      .mx-auto.align-self-center
+        #square.col-12.d-flex
+          .ld.ld-cycle.spinner(v-if="spinner")
+          .mx-auto.align-self-center
+            .title.text-center
+              span(v-text="currency")
+            div(v-text="value")
+            .time.text-center(v-text="time")
+
+    script(src="https://cdn.jsdelivr.net/npm/vue")
+    script(defer async src="/js/app.js")
