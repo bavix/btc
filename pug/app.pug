@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="yandex-verification" content="61c3459b6ccb6400")
+    title How many USD in one BTC?
+    link(href="/css/app.css?v" + ver rel="stylesheet")
+    link(href="/css/loader.css" rel="stylesheet")
+    include favicons
+  body
+    .wrapper.d-flex
+      .mx-auto.align-self-center
+
+        #square.col-12.d-flex(:class="{'down': down}")
+
+          .ld.ld-cycle.spinner(v-if="spinner")
+          .mx-auto.align-self-center(style="z-index: 1")
+            .title.text-center
+              span(v-text="currency")
+            .value(v-if="value > 0" v-text="value.toLocaleString()")
+            .time.text-center(v-text="time")
+
+          canvas#chart.mx-auto.align-self-center
+
+    script(src="https://cdn.jsdelivr.net/npm/vue")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js")
+    script(defer async src="/js/app.js?v" + ver)
