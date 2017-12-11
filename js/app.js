@@ -21,7 +21,12 @@ const vm = new Vue({
             }).then(res => res.json()).then((json) => {
                 const row = json.data.query.results[0].row;
                 const value = parseInt(row.col1) + '$';
-                this.down = value < this.value;
+
+                if (this.value !== value)
+                {
+                    this.down = value < this.value;
+                }
+                
                 this.currency = row.col0;
                 this.time = row.col3;
                 this.value = value;
