@@ -5,6 +5,7 @@ const vm = new Vue({
     el: '#square',
     data: {
         currency: 'Bitcoin',
+        down: false,
         value: null,
         time: null,
         spinner: true,

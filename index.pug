@@ -10,7 +10,7 @@ html(lang="en")
   body
     .wrapper.d-flex
       .mx-auto.align-self-center
-        #square.col-12.d-flex
+        #square.col-12.d-flex(:class="{'down': down}")
           .ld.ld-cycle.spinner(v-if="spinner")
           .mx-auto.align-self-center
             .title.text-center
