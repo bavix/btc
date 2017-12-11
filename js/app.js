@@ -28,6 +28,6 @@ const vm = new Vue({
     },
     mounted: function () {
         this.loadData();
-        setInterval(this.loadData, 2500);
+        setInterval(this.loadData, 1100);
     }
 });
