@@ -87,8 +87,11 @@ const vm = new Vue({
                 this.history.shift();
             }
 
-            chart.data.datasets[0].data = this.history;
-            chart.update();
+            if (typeof chart !== "undefined")
+            {
+                chart.data.datasets[0].data = this.history;
+                chart.update();
+            }
         }
     },
     mounted: function () {
