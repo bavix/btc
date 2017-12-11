@@ -12,11 +12,13 @@ html(lang="en")
       .mx-auto.align-self-center
         #square.col-12.d-flex(:class="{'down': down}")
           .ld.ld-cycle.spinner(v-if="spinner")
-          .mx-auto.align-self-center
+          canvas#chart.mx-auto.align-self-center
+          .mx-auto.align-self-center(style="z-index: 1")
             .title.text-center
               span(v-text="currency")
-            div(v-text="value")
+            .value(v-if="value > 0" v-text="value")
             .time.text-center(v-text="time")
 
     script(src="https://cdn.jsdelivr.net/npm/vue")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js")
     script(defer async src="/js/app.js")
