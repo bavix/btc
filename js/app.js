@@ -46,6 +46,8 @@ window.onload = function () {
 const vm = new Vue({
     el: '#square',
     data: {
+        intervalId: null,
+        interval: null,
         currency: 'Bitcoin',
         down: false,
         value: null,
@@ -91,10 +93,19 @@ const vm = new Vue({
                 chart.data.datasets[0].data = this.history;
                 chart.update();
             }
+        },
+        interval: function () {
+            if (this.intervalId !== null) {
+                clearInterval(this.intervalId);
+                this.intervalId = null;
+            }
+
+            this.intervalId = setInterval(this.loadData, this.interval);
         }
     },
     mounted: function () {
         this.loadData();
-        setInterval(this.loadData, 1100);
+        this.interval = 1500;
+        // setInterval(this.loadData, this.interval);
     }
 });
