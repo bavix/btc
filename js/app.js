@@ -1,23 +1,21 @@
 let apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_';
 let currency = 'BTC';
 
-// switch (location.host) {
-//     case 'ltc.babichev.net':
-//         currency = 'LTC';
-//         break;
-//
-//     case 'eth.babichev.net':
-//         currency = 'ETH';
-//         break;
-//
-//     case 'btc.babichev.net':
-//         currency = 'BTC';
-//         break;
-//
-//     default: apiPath = '/test.php?';
-// }
+switch (location.host) {
+    case 'ltc.babichev.net':
+        currency = 'LTC';
+        break;
 
-apiPath = '/test.php?'; // TODO
+    case 'eth.babichev.net':
+        currency = 'ETH';
+        break;
+
+    case 'btc.babichev.net':
+        currency = 'BTC';
+        break;
+
+    default: apiPath = '/test.php?';
+}
 
 const config = {
     type: 'line'
