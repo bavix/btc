@@ -1,14 +1,16 @@
-let apiPath;
+let apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_';
+let currency = 'BTC';
 
 switch (location.host) {
-    case 'btc.babichev.net':
-        apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_BTC';
-        break;
     case 'eth.babichev.net':
-        apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_ETH';
+        currency = 'ETH';
         break;
 
-    default: apiPath = '/test.php';
+    case 'btc.babichev.net':
+        currency = 'BTC';
+        break;
+
+    default: apiPath = '/test.php?';
 }
 
 const config = {
@@ -58,12 +60,12 @@ const vm = new Vue({
         time: null,
         spinner: true,
         history: [],
-        defaultTitle: 'How many USD in one BTC?'
+        defaultTitle: 'How many USD in one ' + currency + '?'
     },
     methods: {
         loadData: function () {
             this.spinner = true;
-            fetch(apiPath, {
+            fetch(apiPath + currency, {
                 method: 'GET',
                 credentials: 'include',
                 cache: 'no-cache',
