@@ -88,7 +88,11 @@ const vm = new Vue({
                     this.down = value < this.value;
                 }
 
-                this.history.push(row.col1);
+                if (typeof this.history[this.currency] !== "undefined") {
+                    this.history[this.currency] = [];
+                }
+
+                this.history[this.currency].push(row.col1);
                 this.currencyTitle = row.col0;
                 // this.time = row.col3;
                 this.value = value;
@@ -103,16 +107,16 @@ const vm = new Vue({
     },
     watch: {
         history: function () {
-            while (this.history.length > 60) {
-                this.history.shift();
+            while (this.history[this.currency].length > 60) {
+                this.history[this.currency].shift();
             }
 
             if (typeof chart !== "undefined") {
-                if (chart.data.labels.length < this.history.length) {
-                    chart.data.labels = this.history;
+                if (chart.data.labels.length < this.history[this.currency].length) {
+                    chart.data.labels = this.history[this.currency];
                 }
 
-                chart.data.datasets[0].data = this.history;
+                chart.data.datasets[0].data = this.history[this.currency];
                 chart.update();
             }
         },
