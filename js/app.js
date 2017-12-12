@@ -78,9 +78,7 @@ const vm = new Vue({
     },
     watch: {
         value: function (newVal, oldVal) {
-            if (oldVal !== newVal) {
-                this.history.push(newVal);
-            }
+            this.history.push(newVal);
         },
         history: function () {
             while (this.history.length > 30) {
