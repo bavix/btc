@@ -71,7 +71,7 @@ const vm = new Vue({
                     this.down = value < this.value;
                 }
 
-                this.history.push(value);
+                this.history.push(row.col1);
                 this.currency = row.col0;
                 // this.time = row.col3;
                 this.value = value;
