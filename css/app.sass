@@ -23,8 +23,8 @@ body
 
 #square
   overflow: hidden
-  width: 50vw
-  height: 50vw
+  width: 90vw
+  height: 90vw
   transition: .1s
   padding: 0
   background-color: $square
@@ -39,8 +39,10 @@ body
       padding: 10px
       border-radius: 15px
 
-  .value:after
-    content: '$'
+  .value
+    padding-top: 1.4rem
+    &:after
+      content: '$'
 
   .time
     font-size: 4vw
@@ -66,8 +68,8 @@ body
 @media screen and (orientation: landscape)
 
   #square
-    width: 50vw
-    height: 50vw
+    width: 90vh
+    height: 90vh
 
 .currency-changer
   position: absolute
