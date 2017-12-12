@@ -10,13 +10,13 @@ else {
 const config = {
     type: 'line'
     , data: {
-        labels: new Array(30)
+        labels: new Array(60)
         , datasets: [{
             borderColor: 'rgba(35, 43, 43, .3)'
             , data: []
             , fill: false
             , pointRadius: 0
-            , lineTension: .3
+            , lineTension: .5
         }]
     }
     , options: {
@@ -79,7 +79,7 @@ const vm = new Vue({
     },
     watch: {
         history: function () {
-            while (this.history.length > 30) {
+            while (this.history.length > 60) {
                 this.history.shift();
             }
 
