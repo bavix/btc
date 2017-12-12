@@ -54,6 +54,7 @@ const vm = new Vue({
         time: null,
         spinner: true,
         history: [],
+        defaultTitle: 'How many USD in one BTC?'
     },
     methods: {
         loadData: function () {
@@ -76,6 +77,9 @@ const vm = new Vue({
                 // this.time = row.col3;
                 this.value = value;
                 this.spinner = false;
+
+
+                document.title = this.value + ' - ' + this.defaultTitle;
             })
         }
     },
@@ -104,9 +108,10 @@ const vm = new Vue({
         }
     },
     mounted: function () {
+        document.title = this.defaultTitle;
+
         this.loadData();
         this.interval = 1500;
-        // setInterval(this.loadData, this.interval);
 
         setInterval(function () {
             this.time = moment().format('LTS')
