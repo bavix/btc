@@ -25,6 +25,22 @@ echo \json_encode([
                         'col3' => \date('h:ia'),
                     ],
                 ],
+                [
+                    'row' => [
+                        'col0' => 'LC',
+                        'col1' => $_SESSION['col1'] += random_int(-50, 50),
+                        'col2' => \date('d/m/Y'),
+                        'col3' => \date('h:ia'),
+                    ],
+                ],
+                [
+                    'row' => [
+                        'col0' => 'asdsadsad',
+                        'col1' => $_SESSION['col1'] += random_int(-50, 50),
+                        'col2' => \date('d/m/Y'),
+                        'col3' => \date('h:ia'),
+                    ],
+                ],
             ],
         ],
     ],

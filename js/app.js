@@ -75,38 +75,43 @@ const vm = new Vue({
     methods: {
         loadData: function () {
             this.spinner = true;
-            fetch(apiPath + this.currency, {
+            fetch(apiPath + 'USDT_' + this.currencyList.join(',USDT_'), {
                 method: 'GET',
                 credentials: 'include',
                 cache: 'no-cache',
                 mode: 'cors'
             }).then(res => res.json()).then((json) => {
-                const row = json.data.query.results[0].row;
-                const value = parseInt(row.col1);
 
-                if (this.value !== value) {
-                    this.down = value < this.value;
+                let row, value;
+
+                for (const key in this.currencyList) {
+
+                    row = json.data.query.results[key].row;
+                    value = parseInt(row.col1);
+
+                    if (this.currencyList[key] === this.currency && this.value !== value) {
+                        this.down = value < this.value;
+
+                        this.value = value;
+                        this.currencyTitle = row.col0;
+                    }
+
+                    this.historyList.push(row.col1);
+
                 }
 
-                if (typeof this.history[this.currency] === "undefined") {
-                    this.history[this.currency] = [];
-                }
+                this.drawChart();
 
-                this.history[this.currency].push(row.col1);
-                this.currencyTitle = row.col0;
-                // this.time = row.col3;
-                this.value = value;
                 this.spinner = false;
 
                 document.title = this.value + ' - ' + this.defaultTitle;
+
             })
         },
         updateTime: function () {
             this.time = moment().format('LTS')
-        }
-    },
-    watch: {
-        history: function () {
+        },
+        drawChart: function () {
             while (this.history[this.currency].length > 60) {
                 this.history[this.currency].shift();
             }
@@ -119,7 +124,17 @@ const vm = new Vue({
                 chart.data.datasets[0].data = this.history[this.currency];
                 chart.update();
             }
-        },
+        }
+    },
+    computed: {
+        historyList: function () {
+            if (typeof this.history[this.currency] === "undefined") {
+                this.history[this.currency] = [];
+            }
+            return this.history[this.currency]
+        }
+    },
+    watch: {
         interval: function () {
             if (this.intervalId !== null) {
                 clearInterval(this.intervalId);
@@ -129,17 +144,18 @@ const vm = new Vue({
             this.intervalId = setInterval(this.loadData, this.interval);
         },
         currency: function () {
-             this.defaultTitle = 'How many USD in one ' + this.currencyTitle + '?';
+             this.defaultTitle = 'How many USD in one ' + this.currency + '?';
              location.hash = this.currency;
         }
     },
     mounted: function () {
-        document.title = this.defaultTitle;
         this.currency = currency;
 
         if(location.hash) {
             this.currency = location.hash.substr(1,).toUpperCase();
         }
+
+        document.title = this.defaultTitle;
 
         this.loadData();
         this.interval = 1500;
