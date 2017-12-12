@@ -75,7 +75,7 @@ const vm = new Vue({
     methods: {
         loadData: function () {
             this.spinner = true;
-            fetch(apiPath + 'USDT_' + this.currencyList.join(',USDT_'), {
+            fetch(apiPath + this.currencyList.join(',USDT_'), {
                 method: 'GET',
                 credentials: 'include',
                 cache: 'no-cache',
