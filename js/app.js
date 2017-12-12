@@ -88,7 +88,7 @@ const vm = new Vue({
                     this.down = value < this.value;
                 }
 
-                if (typeof this.history[this.currency] !== "undefined") {
+                if (typeof this.history[this.currency] === "undefined") {
                     this.history[this.currency] = [];
                 }
 
