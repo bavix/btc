@@ -67,9 +67,9 @@ const vm = new Vue({
         currency: '',
         defaultTitle: '',
         currencyList: [
-            'LTC',
-            'ETH',
             'BTC',
+            'ETH',
+            'LTC',
         ]
     },
     methods: {

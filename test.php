@@ -2,9 +2,21 @@
 
 session_start();
 
-if (!isset($_SESSION['col1']))
+$_btc = 16000;
+$_eth = 500;
+$_ltc = 250;
+
+if (!isset($_SESSION['btc']))
 {
-    $_SESSION['col1'] = 13000;
+    $_SESSION['btc'] = $_btc;
+    $_SESSION['eth'] = $_eth;
+    $_SESSION['ltc'] = $_ltc;
+}
+
+foreach ($_SESSION as $key => $value) {
+    if (isset(${'_' . $key}) && $value < (${'_' . $key} / 10)) {
+        $_SESSION[$key] = ${'_' . $key};
+    }
 }
 
 \date_default_timezone_set('Europe/Moscow');
@@ -20,23 +32,23 @@ echo \json_encode([
                 [
                     'row' => [
                         'col0' => 'Bitcoin',
-                        'col1' => $_SESSION['col1'] += random_int(-50, 50),
+                        'col1' => $_SESSION['btc'] += random_int(-50, 50),
                         'col2' => \date('d/m/Y'),
                         'col3' => \date('h:ia'),
                     ],
                 ],
                 [
                     'row' => [
-                        'col0' => 'LC',
-                        'col1' => $_SESSION['col1'] += random_int(-50, 50),
+                        'col0' => 'Ethereum',
+                        'col1' => $_SESSION['eth'] += random_int(-10, 10),
                         'col2' => \date('d/m/Y'),
                         'col3' => \date('h:ia'),
                     ],
                 ],
                 [
                     'row' => [
-                        'col0' => 'asdsadsad',
-                        'col1' => $_SESSION['col1'] += random_int(-50, 50),
+                        'col0' => 'Litecoin',
+                        'col1' => $_SESSION['ltc'] += random_int(-5, 5),
                         'col2' => \date('d/m/Y'),
                         'col3' => \date('h:ia'),
                     ],
