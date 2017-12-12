@@ -73,7 +73,7 @@ const vm = new Vue({
 
                 this.history.push(value);
                 this.currency = row.col0;
-                this.time = row.col3;
+                // this.time = row.col3;
                 this.value = value;
                 this.spinner = false;
             })
@@ -107,5 +107,9 @@ const vm = new Vue({
         this.loadData();
         this.interval = 1500;
         // setInterval(this.loadData, this.interval);
+
+        setInterval(function () {
+            this.time = moment().format('LTS')
+        }.bind(this), 1000);
     }
 });
