@@ -48,7 +48,7 @@ const vm = new Vue({
     data: {
         intervalId: null,
         interval: null,
-        currency: 'Bitcoin',
+        currency: null,
         down: false,
         value: null,
         time: null,
@@ -78,9 +78,11 @@ const vm = new Vue({
                 this.value = value;
                 this.spinner = false;
 
-
                 document.title = this.value + ' - ' + this.defaultTitle;
             })
+        },
+        updateTime: function () {
+            this.time = moment().format('LTS')
         }
     },
     watch: {
@@ -113,8 +115,7 @@ const vm = new Vue({
         this.loadData();
         this.interval = 1500;
 
-        setInterval(function () {
-            this.time = moment().format('LTS')
-        }.bind(this), 1000);
+        this.updateTime();
+        setInterval(this.updateTime, 1000);
     }
 });
