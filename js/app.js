@@ -16,7 +16,7 @@ const config = {
             , data: []
             , fill: false
             , pointRadius: 0
-            , lineTension: 0
+            , lineTension: .3
         }]
     }
     , options: {
@@ -87,8 +87,11 @@ const vm = new Vue({
                 this.history.shift();
             }
 
-            if (typeof chart !== "undefined")
-            {
+            if (typeof chart !== "undefined") {
+                if (chart.data.labels.length < this.history.length) {
+                    chart.data.labels = this.history;
+                }
+
                 chart.data.datasets[0].data = this.history;
                 chart.update();
             }
