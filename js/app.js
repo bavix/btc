@@ -1,21 +1,23 @@
 let apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_';
 let currency = 'BTC';
 
-switch (location.host) {
-    case 'ltc.babichev.net':
-        currency = 'LTC';
-        break;
+// switch (location.host) {
+//     case 'ltc.babichev.net':
+//         currency = 'LTC';
+//         break;
+//
+//     case 'eth.babichev.net':
+//         currency = 'ETH';
+//         break;
+//
+//     case 'btc.babichev.net':
+//         currency = 'BTC';
+//         break;
+//
+//     default: apiPath = '/test.php?';
+// }
 
-    case 'eth.babichev.net':
-        currency = 'ETH';
-        break;
-
-    case 'btc.babichev.net':
-        currency = 'BTC';
-        break;
-
-    default: apiPath = '/test.php?';
-}
+apiPath = '/test.php?'; // TODO
 
 const config = {
     type: 'line'
@@ -54,22 +56,28 @@ window.onload = function () {
 };
 
 const vm = new Vue({
-    el: '#square',
+    el: '#wrapper',
     data: {
         intervalId: null,
         interval: null,
-        currency: null,
+        currencyTitle: null,
         down: false,
         value: null,
         time: null,
         spinner: true,
         history: [],
-        defaultTitle: 'How many USD in one ' + currency + '?'
+        currency: '',
+        defaultTitle: '',
+        currencyList: [
+            'LTC',
+            'ETH',
+            'BTC',
+        ]
     },
     methods: {
         loadData: function () {
             this.spinner = true;
-            fetch(apiPath + currency, {
+            fetch(apiPath + this.currency, {
                 method: 'GET',
                 credentials: 'include',
                 cache: 'no-cache',
@@ -83,7 +91,7 @@ const vm = new Vue({
                 }
 
                 this.history.push(row.col1);
-                this.currency = row.col0;
+                this.currencyTitle = row.col0;
                 // this.time = row.col3;
                 this.value = value;
                 this.spinner = false;
@@ -117,10 +125,19 @@ const vm = new Vue({
             }
 
             this.intervalId = setInterval(this.loadData, this.interval);
+        },
+        currency: function () {
+             this.defaultTitle = 'How many USD in one ' + this.currencyTitle + '?';
+             location.hash = this.currency;
         }
     },
     mounted: function () {
         document.title = this.defaultTitle;
+        this.currency = currency;
+
+        if(location.hash) {
+            this.currency = location.hash.substr(1,).toUpperCase();
+        }
 
         this.loadData();
         this.interval = 1500;
