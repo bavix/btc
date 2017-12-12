@@ -1,10 +1,14 @@
 let apiPath;
 
-if (location.host === 'btc.local') {
-    apiPath = '/test.php';
-}
-else {
-    apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_BTC';
+switch (location.host) {
+    case 'btc.babichev.net':
+        apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_BTC';
+        break;
+    case 'eth.babichev.net':
+        apiPath = 'https://hm.babichev.net/api/v1.1/currencies?q=USDT_ETH';
+        break;
+
+    default: apiPath = '/test.php';
 }
 
 const config = {
