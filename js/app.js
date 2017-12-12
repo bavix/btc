@@ -82,21 +82,22 @@ const vm = new Vue({
                 mode: 'cors'
             }).then(res => res.json()).then((json) => {
 
-                let row, value;
+                let row, value, currency;
 
                 for (const key in this.currencyList) {
 
                     row = json.data.query.results[key].row;
                     value = parseInt(row.col1);
+                    currency = this.currencyList[key];
 
-                    if (this.currencyList[key] === this.currency && this.value !== value) {
+                    if (currency === this.currency && this.value !== value) {
                         this.down = value < this.value;
 
                         this.value = value;
                         this.currencyTitle = row.col0;
                     }
 
-                    this.historyList.push(row.col1);
+                    this.historyAt(currency).push(row.col1);
 
                 }
 
@@ -112,26 +113,24 @@ const vm = new Vue({
             this.time = moment().format('LTS')
         },
         drawChart: function () {
-            while (this.history[this.currency].length > 60) {
-                this.history[this.currency].shift();
+            while (this.historyAt(this.currency).length > 60) {
+                this.historyAt(this.currency).shift();
             }
 
             if (typeof chart !== "undefined") {
-                if (chart.data.labels.length < this.history[this.currency].length) {
-                    chart.data.labels = this.history[this.currency];
+                if (chart.data.labels.length < this.historyAt(this.currency).length) {
+                    chart.data.labels = this.historyAt(this.currency);
                 }
 
-                chart.data.datasets[0].data = this.history[this.currency];
+                chart.data.datasets[0].data = this.historyAt(this.currency);
                 chart.update();
             }
-        }
-    },
-    computed: {
-        historyList: function () {
-            if (typeof this.history[this.currency] === "undefined") {
-                this.history[this.currency] = [];
+        },
+        historyAt: function (key) {
+            if (typeof this.history[key] === "undefined") {
+                this.history[key] = [];
             }
-            return this.history[this.currency]
+            return this.history[key]
         }
     },
     watch: {
