@@ -69,6 +69,7 @@ const vm = new Vue({
                     this.down = value < this.value;
                 }
 
+                this.history.push(value);
                 this.currency = row.col0;
                 this.time = row.col3;
                 this.value = value;
@@ -77,9 +78,6 @@ const vm = new Vue({
         }
     },
     watch: {
-        value: function (newVal, oldVal) {
-            this.history.push(newVal);
-        },
         history: function () {
             while (this.history.length > 30) {
                 this.history.shift();
