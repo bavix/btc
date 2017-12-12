@@ -16,7 +16,7 @@ const config = {
             , data: []
             , fill: false
             , pointRadius: 0
-            , lineTension: .5
+            , lineTension: .8
         }]
     }
     , options: {

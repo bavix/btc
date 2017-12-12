@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION['col1']))
+{
+    $_SESSION['col1'] = 13000;
+}
+
 \date_default_timezone_set('Europe/Moscow');
 
 echo \json_encode([
@@ -13,7 +20,7 @@ echo \json_encode([
                 [
                     'row' => [
                         'col0' => 'Bitcoin',
-                        'col1' => \random_int(13000, 17000),
+                        'col1' => $_SESSION['col1'] += random_int(-50, 50),
                         'col2' => \date('d/m/Y'),
                         'col3' => \date('h:ia'),
                     ],
