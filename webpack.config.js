@@ -39,7 +39,7 @@ module.exports = {
                     options: {
                         limit: 10000,
                         mimetype: 'application/font-woff',
-                        name: 'fonts/[name].[ext]'
+                        name: '/fonts/[name].[ext]'
                     }
                 }
             },
@@ -49,7 +49,7 @@ module.exports = {
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'fonts/[name].[ext]'
+                        name: '/fonts/[name].[ext]'
                     }
                 }
             },
@@ -59,7 +59,7 @@ module.exports = {
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'image/[name].[ext]'
+                        name: '/image/[name].[ext]'
                     }
                 }
             },
@@ -81,7 +81,6 @@ module.exports = {
                         {
                             loader: 'sass-loader'
                             , options: {
-                                minimize: true,
                                 sourceMap: true
                             }
                         }
