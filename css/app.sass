@@ -39,9 +39,9 @@ body
     font-size: 5em
 
     span:not(:empty)
-      border: .3rem solid
-      padding: .6rem 1rem
-      border-radius: .9rem
+      border: .15em solid
+      padding: .3em .5em
+      border-radius: .45em
 
   .value
     padding-top: .2em
@@ -70,6 +70,9 @@ body
     width: 80vw
     height: 80vw
 
+  .currency-changer select.form-control
+    font-size: 2em
+
 @media (min-width: $small-width) and (orientation: landscape)
 
   #square
@@ -95,15 +98,18 @@ body
 .currency-changer
   position: absolute
   height: 0
-  top: 0.5rem
-  right: 0.5rem
+  top: .5rem
+  right: .5rem
 
-select.form-control
-  border: 0 none
-  background: linear-gradient(to bottom, #fff, #eee)
-  padding: .1rem
-  border-radius: .1rem
-  outline: none
-  &:hover,
-  &:active
-    background: linear-gradient(to bottom, #eee, #fff)
+  select.form-control
+    border: 0 none
+    background: linear-gradient(to bottom, #fff, #eee)
+    padding: .1em
+    border-radius: .2em
+    outline: none
+    font-size: 1em
+    &>option
+      font-size: .9em
+    &:hover,
+    &:active
+      background: linear-gradient(to bottom, #eee, #fff)
