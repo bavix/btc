@@ -73,17 +73,33 @@ body
 @media (min-width: $small-width) and (orientation: landscape)
 
   #square
+    width: 80vh
+    height: 80vh
+
+@media (max-height: $small-width - 1) and (orientation: landscape)
+
+  #square
     width: 95vh
     height: 95vh
 
 @media (max-width: $small-width - 1) and (orientation: portrait)
 
   #square
-    width: 80vh
-    height: 80vh
+    width: 95vw
+    height: 95vw
 
 .currency-changer
   position: absolute
   height: 0
   top: 0.5rem
   right: 0.5rem
+
+select.form-control
+  border: 0 none
+  background: linear-gradient(to bottom, #fff, #eee)
+  padding: .1rem
+  border-radius: .1rem
+  outline: none
+  &:hover,
+  &:active
+    background: linear-gradient(to bottom, #eee, #fff)
