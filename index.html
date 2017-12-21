@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="yandex-verification" content="61c3459b6ccb6400">
     <title></title>
-    <link href="/css/app.css?v1.4.10" rel="stylesheet">
-    <link href="/css/loader.css" rel="stylesheet">
+    <link href="css/app.css?v1.4.10" rel="stylesheet">
+    <link href="css/loader.css" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png">
@@ -36,9 +36,9 @@
       <div class="mx-auto align-self-center">
         <div class="col-12 d-flex" id="square" :class="{'down': down}">
           <div class="ld ld-cycle spinner" v-if="spinner"></div>
-          <div class="mx-auto align-self-center" style="z-index: 1;">
+          <div class="mx-auto align-self-center" style="z-index: 1;margin-top: -1em;">
             <div class="title text-center"><span v-text="currencyTitle"></span></div>
-            <div class="value" v-if="value &gt; 0" v-text="value.toLocaleString()"></div>
+            <div class="value text-center" v-if="value &gt; 0" v-text="value.toLocaleString()"></div>
             <div class="time text-center" v-text="time"></div>
           </div>
           <canvas class="mx-auto align-self-center" id="chart"></canvas>

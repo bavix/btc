@@ -18,11 +18,12 @@ body
 .wrapper
   min-height: 100%
   min-width: 100%
+  font-size: .8rem
 
 #chart
   position: absolute
-  //padding-left: 3.3rem
-  //padding-right: 3.3rem
+  //padding-left: 3.3em
+  //padding-right: 3.3em
 
 #square
   overflow: hidden
@@ -32,23 +33,24 @@ body
   padding: 0
   background-color: $square
   border-radius: 50%
-  font-size: 12vw
+  //font-size: 12em
 
   .title
-    font-size: 5vw
+    font-size: 5em
 
     span:not(:empty)
-      border: 5px solid
+      border: .3rem solid
       padding: .6rem 1rem
-      border-radius: 15px
+      border-radius: .9rem
 
   .value
-    padding-top: 1.4rem
+    padding-top: .2em
+    font-size: 12em
     &:after
       content: '$'
 
   .time
-    font-size: 4vw
+    font-size: 4em
 
   &.down
     background-color: rgba(6, 6, 6, 0.15)
@@ -59,7 +61,7 @@ body
   width: 100%
   height: 100%
   border-radius: 50%
-  border: 4px solid
+  border: .2rem solid
   border-color: white transparent transparent transparent
 
 @media (min-width: $small-width)
@@ -67,8 +69,6 @@ body
   #square
     width: 80vw
     height: 80vw
-    .title span:not(:empty)
-      padding: .2em
 
 @media (min-width: $small-width) and (orientation: landscape)
 
@@ -81,12 +81,16 @@ body
   #square
     width: 95vh
     height: 95vh
+  .wrapper
+    font-size: 1.5vh
 
 @media (max-width: $small-width - 1) and (orientation: portrait)
 
   #square
     width: 95vw
     height: 95vw
+  .wrapper
+    font-size: 1.2vw
 
 .currency-changer
   position: absolute
