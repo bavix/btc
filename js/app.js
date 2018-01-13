@@ -143,7 +143,7 @@ const vm = new Vue({
             this.intervalId = setInterval(this.loadData, this.interval);
         },
         currency: function () {
-             this.defaultTitle = 'How many USD in one ' + this.currency + '?';
+             this.defaultTitle = 'How many USDT in one ' + this.currency + '?';
              location.hash = this.currency;
         }
     },
