@@ -14,7 +14,7 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "resolve-url-loader": "^2.2.0",
-    "file-loader": "^1.1.5",
+    "file-loader": "^2.0.0",
     "webpack": "^3.10.0",
     "url-loader": "^0.6.2"
   },
