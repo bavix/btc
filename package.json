@@ -11,7 +11,7 @@
     "pug": "^2.0.0-rc.4",
     "pug-html-loader": "^1.1.5",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2",
+    "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^0.4.3",
     "resolve-url-loader": "^2.2.0",
     "file-loader": "^1.1.5",
